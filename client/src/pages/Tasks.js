@@ -108,9 +108,13 @@ const Tasks = () => {
   const handleSubmit = async () => {
     try {
       const taskData = {
-        ...formData,
-        dueDate: formData.dueDate ? new Date(formData.dueDate) : null
+        ...formData
       };
+
+      // Only include dueDate if it's actually provided
+      if (formData.dueDate && formData.dueDate.trim() !== '') {
+        taskData.dueDate = new Date(formData.dueDate).toISOString();
+      }
 
       if (editingTask) {
         await taskAPI.updateTask(editingTask._id, taskData);
@@ -123,6 +127,7 @@ const Tasks = () => {
       setOpenDialog(false);
       fetchTasks();
     } catch (error) {
+      console.error('Task operation error:', error);
       toast.error(error.response?.data?.message || 'An error occurred');
     }
   };

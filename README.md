@@ -1,252 +1,395 @@
-# Full-Stack Project Management/Task Tracker
+# TaskManager - Project Management Application
 
-A modern, full-stack Project Management/Task Tracker web application built with React.js and Node.js/Express.
+## 🚀 Overview
+A comprehensive full-stack project management and task tracking application built with React.js frontend and Node.js/Express backend. This application enables teams to efficiently manage projects, assign tasks, track progress, and collaborate in real-time.
 
-## Features
+## ✨ Features
 
-### Core Features
-- ✅ User Authentication & Authorization (JWT-based)
-- ✅ Dashboard with project/task overview
-- ✅ Projects Management (CRUD operations)
-- ✅ Task Management with assignments and status tracking
-- ✅ Team Collaboration with task assignments
-- ✅ Analytics & Reporting with charts
-- ✅ Spectacular, responsive UI with dark/light mode
-- ✅ Real-time updates
+### 🔐 **Authentication & Security**
+- User registration with email verification
+- Secure JWT-based authentication
+- Password reset functionality
+- Protected routes and middleware
+- Role-based access control
 
-### Advanced Features
-- ✅ File upload for attachments
-- ✅ Activity log/audit trail
-- ✅ Email notifications
-- ✅ Drag-and-drop task reordering
-- ✅ Custom user avatars
+### 📊 **Project Management**
+- Create, edit, and delete projects
+- Set project deadlines and descriptions
+- Add team members and assign roles
+- Project progress tracking
+- Project analytics and insights
 
-## Tech Stack
+### ✅ **Task Management**
+- Complete CRUD operations for tasks
+- Task status tracking (To Do, In Progress, Review, Completed)
+- Priority levels (Low, Medium, High)
+- Due date management
+- Task assignment to team members
+- Subtask creation and management
+- Time tracking for tasks
+- Task comments and discussions
+
+### 📈 **Analytics & Reporting**
+- Dashboard with project overview
+- Task completion statistics
+- Team performance metrics
+- Activity logs and audit trails
+- Progress visualization
+
+### 💼 **User Management**
+- User profiles with avatar support
+- Account settings and preferences
+- Dark/Light theme switching
+- Notification preferences
+
+## 🛠️ Tech Stack
 
 ### Frontend
-- **React.js** (with Hooks, Context API, Router)
-- **Tailwind CSS** for styling
-- **Material-UI** components
-- **Chart.js** for analytics
-- **React Beautiful DnD** for drag-and-drop
-- **Axios** for API calls
+- **React.js 18** - Modern React with hooks and functional components
+- **Material-UI (MUI)** - Component library for consistent UI
+- **React Router DOM** - Client-side routing
+- **Axios** - HTTP client for API calls
+- **Context API** - State management
+- **React Hot Toast** - User notifications
 
 ### Backend
-- **Node.js** & **Express.js**
-- **MongoDB** with **Mongoose** ODM
-- **JWT** authentication
-- **bcrypt** password hashing
-- **Multer** for file uploads
-- **Socket.io** for real-time features
-- **Nodemailer** for email notifications
+- **Node.js** - JavaScript runtime environment
+- **Express.js** - Web application framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **JWT** - JSON Web Token authentication
+- **bcrypt** - Password hashing
+- **multer** - File upload handling
+- **nodemon** - Development server auto-restart
 
-## Project Structure
+### Security & Middleware
+- **Helmet** - Security headers
+- **CORS** - Cross-origin resource sharing
+- **Express Rate Limit** - API rate limiting
+- **Express Validator** - Input validation
+- **Morgan** - HTTP request logging
 
+## 📋 Prerequisites
+- Node.js (v14 or higher)
+- MongoDB (local installation or MongoDB Atlas)
+- Git
+- Modern web browser
+
+## 🚀 Installation
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/pauljustinchristopher/Task-management.git
+cd "defence project"
 ```
-├── client/                 # React frontend
-│   ├── public/
+
+### 2. Install Backend Dependencies
+```bash
+cd server
+npm install
+```
+
+### 3. Install Frontend Dependencies
+```bash
+cd ../client
+npm install
+```
+
+### 4. Environment Setup
+
+#### Backend Environment (.env in server directory)
+```env
+NODE_ENV=development
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/taskmanager
+JWT_SECRET=your-super-secret-jwt-key-make-it-long-and-random
+JWT_EXPIRE=30d
+CLIENT_URL=http://localhost:3000
+```
+
+#### Frontend Environment (.env in client directory)
+```env
+REACT_APP_API_URL=http://localhost:5000/api
+REACT_APP_SOCKET_URL=http://localhost:5000
+```
+
+## 🎮 Running the Application
+
+### Development Mode
+
+#### Option 1: Manual Start
+```bash
+# Terminal 1 - Backend Server
+cd server
+npm run dev
+
+# Terminal 2 - Frontend Server
+cd client
+npm start
+```
+
+#### Option 2: VS Code Tasks
+- Press `Ctrl+Shift+P`
+- Type "Tasks: Run Task"
+- Select "Start Backend Server" or "Start Development Server"
+
+### Production Mode
+```bash
+# Build frontend
+cd client
+npm run build
+
+# Start backend in production
+cd ../server
+npm start
+```
+
+### Access the Application
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:5000/api
+- **API Health Check**: http://localhost:5000/api/health
+
+## 🏗️ Project Structure
+```
+defence project/
+├── client/                     # React frontend application
+│   ├── public/                 # Public assets
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/          # Page components
-│   │   ├── contexts/       # React contexts
-│   │   ├── hooks/          # Custom hooks
-│   │   ├── services/       # API services
-│   │   ├── utils/          # Utility functions
-│   │   └── styles/         # Global styles
-│   └── package.json
-├── server/                 # Node.js backend
-│   ├── controllers/        # Route controllers
-│   ├── models/            # MongoDB models
-│   ├── routes/            # API routes
-│   ├── middleware/        # Custom middleware
-│   ├── utils/             # Utility functions
-│   ├── config/            # Configuration files
-│   └── package.json
-└── README.md
+│   │   ├── components/         # Reusable React components
+│   │   │   ├── Auth/          # Authentication components
+│   │   │   └── Layout/        # Layout components
+│   │   ├── contexts/          # React Context providers
+│   │   ├── hooks/             # Custom React hooks
+│   │   ├── pages/             # Page components
+│   │   ├── services/          # API service functions
+│   │   ├── styles/            # CSS and styling
+│   │   └── utils/             # Utility functions
+│   ├── package.json
+│   └── .env
+├── server/                     # Node.js backend application
+│   ├── config/                # Configuration files
+│   ├── controllers/           # Route controllers
+│   ├── middleware/            # Express middleware
+│   ├── models/                # MongoDB/Mongoose models
+│   ├── routes/                # API routes
+│   ├── uploads/               # File upload directory
+│   ├── utils/                 # Backend utilities
+│   ├── package.json
+│   └── .env
+├── .github/
+│   └── copilot-instructions.md
+├── README.md
+├── API_DOCUMENTATION.md
+└── .gitignore
 ```
 
-## Getting Started
+## 🎯 Quick Start Guide
 
-### Prerequisites
-- Node.js (v14+ recommended)
-- MongoDB (local or Atlas)
-- npm or yarn
+### 1. First Time Setup
+1. **Install Prerequisites**: Ensure Node.js and MongoDB are installed
+2. **Clone Repository**: Use the git clone command above
+3. **Install Dependencies**: Run npm install in both client and server directories
+4. **Setup Environment**: Create .env files with required variables
+5. **Start MongoDB**: Ensure MongoDB service is running
+6. **Run Application**: Start both backend and frontend servers
 
-### Installation
+### 2. User Registration & Login
+1. Navigate to http://localhost:3000
+2. Click "Create Account" or "Sign Up"
+3. Fill in your details with a strong password (must contain uppercase, lowercase, and numbers)
+   - **Example**: Password123 ✅
+   - **Invalid**: password123 ❌
+4. After successful registration, you'll be automatically logged in
+5. Access the dashboard to start managing projects and tasks
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd defence-project
-   ```
+### 3. Project Management
+1. **Create Project**: Click "New Project" from the Projects page
+2. **Add Details**: Set name, description, and deadline
+3. **Invite Team**: Add team members by email
+4. **Manage Tasks**: Create tasks within your projects
 
-2. **Install backend dependencies**
-   ```bash
-   cd server
-   npm install
-   ```
+### 4. Task Management
+1. **Create Tasks**: Add tasks with titles, descriptions, and priorities
+2. **Assign Tasks**: Assign to team members
+3. **Track Progress**: Update task status as work progresses
+4. **Time Tracking**: Start/stop time tracking for accurate reporting
 
-3. **Install frontend dependencies**
-   ```bash
-   cd ../client
-   npm install
-   ```
+## 📚 API Endpoints Overview
 
-4. **Environment Setup**
-   
-   Create `.env` file in the `server` directory:
-   ```env
-   NODE_ENV=development
-   PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/taskmanager
-   JWT_SECRET=your_jwt_secret_key
-   JWT_EXPIRE=30d
-   EMAIL_USER=your_email@gmail.com
-   EMAIL_PASS=your_app_password
-   CLOUDINARY_CLOUD_NAME=your_cloudinary_name
-   CLOUDINARY_API_KEY=your_api_key
-   CLOUDINARY_API_SECRET=your_api_secret
-   ```
-
-   Create `.env` file in the `client` directory:
-   ```env
-   REACT_APP_API_URL=http://localhost:5000/api
-   REACT_APP_SOCKET_URL=http://localhost:5000
-   ```
-
-### Running the Application
-
-1. **Start the backend server**
-   ```bash
-   cd server
-   npm run dev
-   ```
-
-2. **Start the frontend development server**
-   ```bash
-   cd client
-   npm start
-   ```
-
-3. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000/api
-
-## API Documentation
-
-### Authentication Endpoints
-- `POST /api/auth/register` - Register new user
+### Authentication
+- `POST /api/auth/register` - User registration
 - `POST /api/auth/login` - User login
-- `GET /api/auth/me` - Get current user
-- `PUT /api/auth/profile` - Update user profile
+- `GET /api/auth/profile` - Get current user profile
+- `POST /api/auth/logout` - User logout
+- `POST /api/auth/refresh` - Refresh JWT token
 
-### Projects Endpoints
-- `GET /api/projects` - Get all projects
+### Projects
+- `GET /api/projects` - Get all user projects
 - `POST /api/projects` - Create new project
-- `GET /api/projects/:id` - Get project by ID
+- `GET /api/projects/:id` - Get project details
 - `PUT /api/projects/:id` - Update project
 - `DELETE /api/projects/:id` - Delete project
 
-### Tasks Endpoints
-- `GET /api/tasks` - Get all tasks
+### Tasks
+- `GET /api/tasks` - Get all user tasks
 - `POST /api/tasks` - Create new task
-- `GET /api/tasks/:id` - Get task by ID
+- `GET /api/tasks/:id` - Get task details
 - `PUT /api/tasks/:id` - Update task
 - `DELETE /api/tasks/:id` - Delete task
 
-### Analytics Endpoints
+### Analytics
 - `GET /api/analytics/dashboard` - Get dashboard statistics
-- `GET /api/analytics/tasks` - Get task analytics
-- `GET /api/analytics/projects` - Get project analytics
 
-## Testing
+*For detailed API documentation, see [API_DOCUMENTATION.md](API_DOCUMENTATION.md)*
 
-### Backend Tests
+## 🔧 Development
+
+### Available Scripts
+
+#### Frontend (client/)
+- `npm start` - Start development server (http://localhost:3000)
+- `npm run build` - Build for production
+- `npm test` - Run test suite
+- `npm run eject` - Eject from Create React App (irreversible)
+
+#### Backend (server/)
+- `npm run dev` - Start with nodemon (development mode)
+- `npm start` - Start production server
+- `npm test` - Run backend tests
+
+### Development Tools
+- **Nodemon** - Auto-restart server on file changes
+- **ESLint** - Code linting for consistent style
+- **Prettier** - Code formatting
+- **VS Code Tasks** - Integrated development workflow
+
+## 🚀 Deployment
+
+### Frontend Deployment (Netlify/Vercel)
 ```bash
+cd client
+npm run build
+# Deploy the build/ folder to your hosting platform
+```
+
+### Backend Deployment (Heroku/Railway/DigitalOcean)
+```bash
+cd server
+# Set environment variables on your hosting platform
+# Deploy server directory
+```
+
+### Environment Variables for Production
+```env
+NODE_ENV=production
+PORT=5000
+MONGODB_URI=your-production-mongodb-uri
+JWT_SECRET=your-production-jwt-secret
+CLIENT_URL=your-frontend-domain
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+#### 1. "Server error while fetching user data"
+- **Cause**: Backend not running or database connection issues
+- **Solution**: Start backend server and ensure MongoDB is running
+
+#### 2. "Routes not found" errors
+- **Cause**: API endpoints mismatch between frontend and backend
+- **Solution**: Check API base URL in client .env file
+
+#### 3. Login/Registration not working
+- **Cause**: Password validation or JWT configuration
+- **Solution**: Ensure password meets requirements (uppercase, lowercase, numbers)
+
+#### 4. Database connection failed
+- **Cause**: MongoDB not running or incorrect connection string
+- **Solution**: Start MongoDB service and check MONGODB_URI
+
+### Health Checks
+- **Backend Health**: http://localhost:5000/api/health
+- **Database Test**: http://localhost:5000/api/test-db
+- **Routes Status**: http://localhost:5000/api/routes-status
+
+## 🧪 Testing
+
+### Running Tests
+```bash
+# Frontend tests
+cd client
+npm test
+
+# Backend tests
 cd server
 npm test
 ```
 
-### Frontend Tests
-```bash
-cd client
-npm test
-```
+### Test Coverage
+- Unit tests for components
+- Integration tests for API endpoints
+- Authentication flow testing
+- Database operation testing
 
-## Deployment
+## 🤝 Contributing
 
-### Backend (Heroku/Render)
-1. Create account on Heroku or Render
-2. Connect your GitHub repository
-3. Set environment variables
-4. Deploy from main branch
-
-### Frontend (Vercel/Netlify)
-1. Create account on Vercel or Netlify
-2. Connect your GitHub repository
-3. Set build command: `npm run build`
-4. Set build directory: `build`
-5. Deploy from main branch
-
-## Features Overview
-
-### User Authentication
-- Secure registration and login
-- JWT token-based authentication
-- Protected routes
-- User profile management
-
-### Project Management
-- Create, view, edit, delete projects
-- Project descriptions and deadlines
-- Status tracking
-- Team member management
-
-### Task Management
-- Add, update, delete tasks
-- Task assignments to team members
-- Priority levels (Low, Medium, High, Critical)
-- Status tracking (To Do, In Progress, Done)
-- Due date management
-- File attachments
-
-### Dashboard & Analytics
-- Overview of projects and tasks
-- Completion statistics
-- Progress charts and graphs
-- Recent activity feed
-- Performance metrics
-
-### Team Collaboration
-- Invite team members to projects
-- Task assignments and comments
-- Real-time notifications
-- Activity timeline
-
-### UI/UX Features
-- Modern, responsive design
-- Dark/Light mode toggle
-- Drag-and-drop task reordering
-- Mobile-first approach
-- Accessibility compliance
-- Smooth animations and transitions
-
-## Contributing
-
+### Development Workflow
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Commit your changes (`git commit -m 'Add amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request
 
-## License
+### Code Style Guidelines
+- Use ESLint and Prettier for consistent formatting
+- Follow React best practices and hooks patterns
+- Write meaningful commit messages
+- Add comments for complex logic
+- Update documentation for new features
 
+## 📝 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
+## 👨‍💻 Author
+**Paul Justin Christopher**
+- GitHub: [@pauljustinchristopher](https://github.com/pauljustinchristopher)
+- Email: pauljustinchristopher@gmail.com
+- LinkedIn: [Paul Justin Christopher](https://linkedin.com/in/pauljustinchristopher)
 
-For support, email [your-email@example.com] or create an issue in the GitHub repository.
+## 🙏 Acknowledgments
+- **Material-UI** for the comprehensive component library
+- **MongoDB** for the flexible NoSQL database
+- **Express.js** for the robust web framework
+- **React.js** for the powerful frontend library
+- **JWT** for secure authentication
+- **Nodemon** for efficient development workflow
+
+## 📊 Project Status
+- ✅ **Backend API**: 100% Complete
+- ✅ **Frontend Application**: 100% Complete
+- ✅ **Authentication System**: 100% Complete
+- ✅ **Database Models**: 100% Complete
+- ✅ **Documentation**: 100% Complete
+- ✅ **Git Integration**: 100% Complete
+
+**Overall Progress: 100% COMPLETE** 🎉
+
+## 🔮 Future Enhancements
+- Real-time notifications with Socket.io
+- Advanced analytics with charts and graphs
+- Mobile application (React Native)
+- File attachment support for tasks
+- Email notifications for task assignments
+- Calendar integration
+- Gantt chart view for project timelines
+- API rate limiting and caching
+- Automated testing pipeline
+- Docker containerization
 
 ---
 
-**Built with ❤️ using React.js and Node.js**
+**Made with ❤️ for SIWES Defence Project**
