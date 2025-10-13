@@ -46,11 +46,20 @@ const Profile = () => {
 
   const handleSave = async () => {
     try {
-      const response = await authAPI.updateProfile(formData);
+      // Filter out empty strings for optional fields
+      const dataToSend = Object.keys(formData).reduce((acc, key) => {
+        if (formData[key] !== '') {
+          acc[key] = formData[key];
+        }
+        return acc;
+      }, {});
+      
+      const response = await authAPI.updateProfile(dataToSend);
       updateUser(response.data.data);
       setEditing(false);
       toast.success('Profile updated successfully');
     } catch (error) {
+      console.error('Profile update error:', error.response?.data);
       toast.error(error.response?.data?.message || 'Failed to update profile');
     }
   };

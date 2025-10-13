@@ -81,7 +81,10 @@ export const authAPI = {
   forgotPassword: (email) => api.post('/auth/forgot-password', email),
   resetPassword: (token, password) => api.post(`/auth/reset-password/${token}`, { password }),
   getProfile: () => api.get('/auth/profile'),
-  updateProfile: (data) => api.put('/auth/profile', data),
+  updateProfile: (data) => {
+    console.log('Sending profile update data:', data);
+    return api.put('/auth/profile', data);
+  },
 };
 
 // Projects API
