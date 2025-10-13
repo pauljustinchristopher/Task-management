@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { mockAPI } from './mockAPI';
 
 // Create axios instance
 const api = axios.create({
@@ -27,6 +28,29 @@ api.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+// Check if API is available
+const isAPIAvailable = async () => {
+  try {
+    await api.get('/health');
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+// Create wrapper function that falls back to mock API
+const createAPIWrapper = (realAPICall, mockAPICall) => {
+  return async (...args) => {
+    try {
+      return await realAPICall(...args);
+    } catch (error) {
+      console.warn('Real API not available, using mock API', error.message);
+      toast.info('Demo mode: Using mock data');
+      return await mockAPICall(...args);
+    }
+  };
+};
 
 // Response interceptor to handle errors
 api.interceptors.response.use(
@@ -78,17 +102,29 @@ api.interceptors.response.use(
 
 // Auth API
 export const authAPI = {
-  login: (credentials) => api.post('/auth/login', credentials),
-  register: (userData) => api.post('/auth/register', userData),
+  login: createAPIWrapper(
+    (credentials) => api.post('/auth/login', credentials),
+    (credentials) => mockAPI.login(credentials)
+  ),
+  register: createAPIWrapper(
+    (userData) => api.post('/auth/register', userData),
+    (userData) => mockAPI.register(userData)
+  ),
   logout: () => api.post('/auth/logout'),
   refreshToken: () => api.post('/auth/refresh'),
   forgotPassword: (email) => api.post('/auth/forgot-password', email),
   resetPassword: (token, password) => api.post(`/auth/reset-password/${token}`, { password }),
-  getProfile: () => api.get('/auth/profile'),
-  updateProfile: (data) => {
-    console.log('Sending profile update data:', data);
-    return api.put('/auth/profile', data);
-  },
+  getProfile: createAPIWrapper(
+    () => api.get('/auth/profile'),
+    () => mockAPI.getProfile()
+  ),
+  updateProfile: createAPIWrapper(
+    (data) => {
+      console.log('Sending profile update data:', data);
+      return api.put('/auth/profile', data);
+    },
+    (data) => mockAPI.updateProfile(data)
+  ),
 };
 
 // Projects API
