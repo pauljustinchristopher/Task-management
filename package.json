@@ -7,7 +7,7 @@
     "start": "cd client && npm start"
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "devDependencies": {},
   "dependencies": {}

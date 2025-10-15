@@ -312,8 +312,14 @@ The application showcases advanced features including real-time collaboration, c
 This project stands as one of my most significant technical achievements during the SIWES program, demonstrating the ability to design, develop, and deploy complex web applications that solve real-world business problems. The skills and knowledge gained through this project provide a solid foundation for professional full-stack development roles.
 
 **Repository**: https://github.com/pauljustinchristopher/Task-management
-**Live Demo**: [Deployment URL when available]
+**Live Demo**: https://task-management-pauljustinchristopher.vercel.app (Deployed on Vercel)
 **Documentation**: Complete API documentation and technical guides included
+
+### Deployment Architecture:
+- **Frontend**: Deployed on Vercel with automatic CI/CD
+- **Smart Fallback System**: Mock API integration for demo purposes
+- **Production Database**: MongoDB Atlas cloud database
+- **Environment**: Production-optimized with security measures
 
 ---
 
